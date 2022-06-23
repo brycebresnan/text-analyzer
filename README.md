@@ -68,3 +68,17 @@ const text = "Red! Red. I like red, green, and yellow.";
 const word = "Red";
 numberOfOccurrencesInText(word, text);
 Expected Output: 3
+
+
+Describe: censor()
+
+Test: "It should omit nothing for an empty string."
+
+Code:
+const text = "";
+Expected Output: "";
+
+Test: "It should omit nothing for an empty string."
+Code:
+const text = "";
+Expected Output: "";
