@@ -73,12 +73,57 @@ Expected Output: 3
 Describe: censor()
 
 Test: "It should omit nothing for an empty string."
-
 Code:
 const text = "";
+const badWords = ["zoinks", "muppeteer", "biffaroni", "loopdaloop"];
+censor(badWords, text);
 Expected Output: "";
 
-Test: "It should omit nothing for an empty string."
+Test: "It should omit nothing for a string of text."
+Code: 
+const text = "The quick brown fox jumps over the lazy dog";
+const badWords = ["zoinks", "muppeteer", "biffaroni", "loopdaloop"];
+censor(badWords, text);
+Expected Output: "The quick brown fox jumps over the lazy dog";
+
+Test: "It should omit a single word string when it matches one given in an array and return an empty string."
 Code:
-const text = "";
-Expected Output: "";
+const text = "zoinks";
+const badWords = ["zoinks"];
+censor(badWords, text);
+Expected Output: ""
+
+Test: "It should omit a word that matches a single word in a given array no matter how many times it appears, replacing it with '****' "
+Code:
+const text = "zoinks zoinks zoinks";
+const badWords = ["zoinks"];
+censor(badWords, text);
+Expected Output: "**** **** ****"
+
+Test: "It shoudl not replace non matching words."
+Code:
+const text = "The quick brown fox jumps over the lazy dog";
+const badWords = ["zoinks"];
+censor(badWords, text);
+Expected Output: "The quick brown fox jumps over the lazy dog"
+
+Test: "It should replace a word that matches a single word given in an array surrounded by not matching words."
+Code:
+const text = "The quick brown fox jumps over the zoinks dog";
+const badWords = ["zoinks"];
+censor(badWords, text);
+Expected Output: "The quick brown fox jumps over the **** dog"
+
+Test: "It should omit either of two words given in an array"
+Code:
+const text = "zoinks muppeteer"
+const badWords = ["zoinks","muppeteer"]
+censor(badWords, text);
+Expected Output = "**** ****"
+
+Test: "It should omit either of two words given in an array with other words"
+Code:
+const text = "The quick zoinks fox jumps over the muppeteer dog"
+const badWords = ["zoinks","muppeteer"]
+censor(badWords, text);
+Expected Output = "The quick **** fox jumps over the **** dog"
